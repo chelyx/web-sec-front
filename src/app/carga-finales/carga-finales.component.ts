@@ -13,8 +13,8 @@ mesaId?: string;
     private apiService: ApiService
   ) {}
    ngOnInit(): void {
-   this.apiService.getMisCursos().subscribe(cursos => {
-      console.log('Cursos obtenidos:', cursos);
+this.apiService.registrarBFA().subscribe(response => {
+      console.log('Respuesta del servidor:', response);
     });
   }
 

@@ -1,0 +1,45 @@
+<div class="asistencia-container">
+  <!-- Header con título y selector -->
+  <div class="asistencia-header">
+    <h1 class="header-title">Toma de Asistencia</h1>
+
+    <mat-form-field appearance="outline" class="curso-select">
+      <mat-label>Curso</mat-label>
+      <mat-select [(ngModel)]="cursoSeleccionado" (selectionChange)="onCursoChange($event.value)">
+        <mat-option *ngFor="let curso of cursos" [value]="curso.id">
+          {{ curso.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Tabla de asistencias -->
+  <table class="asistencia-table">
+    <thead>
+      <tr>
+        <th>Alumno</th>
+        <th *ngFor="let fecha of fechas">{{ fecha | date:'dd/MM/yyyy' }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of alumnosMap | keyvalue; trackBy: trackByAlumno">
+        <td class="nombre">{{ item.value.nombre }}</td>
+        <td *ngFor="let fecha of fechas" class="checkbox-cell">
+          <mat-checkbox
+            [(ngModel)]="item.value.asistenciasPorFecha[fecha]"
+            (change)="marcarModificado(item.key, fecha)">
+          </mat-checkbox>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Botón de guardar -->
+  <div class="acciones">
+    <button mat-raised-button color="primary"
+            (click)="guardarCambios()"
+            [disabled]="!hasChanges()">
+      Guardar cambios ({{ getChangesCount() }})
+    </button>
+  </div>
+</div>
