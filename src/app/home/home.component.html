@@ -50,6 +50,7 @@
       <app-asistencia-table *ngIf="currentPanel === PANELES.ASISTENCIA_TABLE" [cursos]="cursos" ></app-asistencia-table>
       <app-historial-notas *ngIf="currentPanel === PANELES.HISTORIAL_NOTAS"></app-historial-notas>
       <app-notas-table *ngIf="currentPanel === PANELES.EDITAR_NOTAS" [cursos]="cursos"></app-notas-table>
+      <app-buscador-alumnos *ngIf="currentPanel === PANELES.ALUMNOS"></app-buscador-alumnos>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

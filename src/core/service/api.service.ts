@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AuthService } from '@auth0/auth0-angular';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { UserValidatedClass } from '../models/user';
+import { User, UserValidatedClass } from '../models/user';
 import { Curso } from '../models/curso';
 import { UUID } from 'crypto';
 import {  AsistenciaResponse } from '../models/asistencia';
@@ -88,6 +88,8 @@ export class ApiService {
     return this.postProtegido('api/notas/registrar', nota);
   }
 
-
+  searchByUsername(username: string): Observable<User[]> {
+    return this.getProtegido(`api/user/search?username=${username}` );
+  }
 
 }
