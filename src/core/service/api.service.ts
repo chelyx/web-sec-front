@@ -70,7 +70,7 @@ export class ApiService {
   }
 
   getNotasByCurso(cursoId: UUID): Observable<NotaResponse[]> {
-    return this.getProtegido(`api/notas/curso/${cursoId}`);
+    return this.getProtegido(`api/notas?curso=${cursoId}`);
   }
 
   registerUser(): Observable<any> {
